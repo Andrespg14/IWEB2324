@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CrearUsuario from "./pages/CreateUserPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // GoogleMaps
 import ReactGoogleMaps from "./components/ReactGoogleMaps";
 
@@ -15,8 +15,11 @@ import obtenerTokenDesdeCookie from "./components/CheckToken";
 import CloudinaryUploadButton from "./components/CloudinaryUploadButton";
 import CloudinaryShowImage from "./components/CloudinaryShowImage";
 
-//Sandbox
+//PAGES
 import EditarUsuario from "./pages/EditUserPage";
+import HomePage from "./pages/HomePage";
+import EventDetails from "./pages/EventDetails";
+import CreateEventPage from "./pages/CreateEventPage";
 
 function App() {
   // Para el ID de la imagen
@@ -57,7 +60,7 @@ function App() {
     <div className="App">
       {/* CLOUDINARY THINGS
       <CloudinaryUploadButton></CloudinaryUploadButton>
-      <button onClick={getInfo}>Mostrar Raulito</button>
+      <button onClick={getInfo}>Mostrar</button>
       <CloudinaryShowImage publicId={publicId}></CloudinaryShowImage>
       */}
       {/*
@@ -77,10 +80,21 @@ function App() {
         <h1>HOLA SEGUNDA VERSION DE VERCEL</h1>
       </GoogleOAuthProvider>
       */}
+      {/*
       <EditarUsuario
         usuarioInicial={usuarioEjemplo}
         onGuardar={guardarCambios}
       />
+      */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/eventDetails" element={<EventDetails />} />
+          <Route path="/createEvent" element={<CreateEventPage />} />
+          <Route path="/editEvent" element={<h3>Pagina editar</h3>} />
+          <Route path="/delEvent" element={<h3>Borrar??</h3>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
