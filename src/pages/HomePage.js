@@ -19,7 +19,18 @@ function HomePage() {
   const [open, setOpen] = useState(false);
   const [marker, setMarker] = useState();
   const [positions, setPositions] = useState([]);
-
+  const trees = [
+    { id: 1, position: { lat: 37.1775, lng: -3.5986 } },
+    { id: 2, position: { lat: 37.1841, lng: -3.6047 } },
+    { id: 3, position: { lat: 37.175, lng: -3.6042 } },
+    { id: 4, position: { lat: 37.1826, lng: -3.6067 } },
+    { id: 5, position: { lat: 37.1698, lng: -3.5841 } },
+    { id: 6, position: { lat: 37.1848, lng: -3.5812 } },
+    { id: 7, position: { lat: 37.1785, lng: -3.5982 } },
+    { id: 8, position: { lat: 37.177, lng: -3.5989 } },
+    { id: 9, position: { lat: 37.1793, lng: -3.6053 } },
+    { id: 10, position: { lat: 37.1741, lng: -3.6065 } },
+  ];
   const handleMapClick = (event) => {
     console.log(event);
     const newMarker = {
@@ -33,6 +44,17 @@ function HomePage() {
     console.log("Longitud:", newMarker.lng);
   };
 
+  const Markers = ({ points }) => {
+    return (
+      <>
+        {points.map((point) => (
+          <AdvancedMarker position={point.position} key={point.id}>
+            <span style={{ fontSize: "1rem" }}>🔴</span>
+          </AdvancedMarker>
+        ))}
+      </>
+    );
+  };
   useEffect(() => {
     if (data && data.length > 0) {
       const nuevasPosiciones = data.map((event) => event.position);
@@ -58,9 +80,8 @@ function HomePage() {
             <AdvancedMarker position={marker} onClick={() => setOpen(true)}>
               <Pin></Pin>
             </AdvancedMarker>
-            {/* VARIOS MARCADORES
-          <Markers points={trees}></Markers>
-           */}
+            {/* VARIOS MARCADORES*/}
+            <Markers points={trees}></Markers>
           </Map>
         </div>
       </APIProvider>
