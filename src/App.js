@@ -55,7 +55,7 @@ function App() {
             console.log("Login Failed");
           }}
         />
-        <h1>HOLA</h1>
+        <h1>HOLA SEGUNDA VERSION DE VERCEL</h1>
       </GoogleOAuthProvider>
     </div>
   );
